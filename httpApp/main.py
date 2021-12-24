@@ -1,5 +1,5 @@
 import boto3
-import json
+from flask import jsonify
 from flask import Flask, request
 from flask.templating import render_template
 app = Flask(__name__)
@@ -17,7 +17,8 @@ def search():
         s3_client = boto3.client('s3')
         response = s3_client.get_object(
             Bucket='helmrepo', Key=content)
-        data = response['Body'].read()
+        d = response['Body'].read()
+        data = jsonify(d)
     return render_template('search.html', data=data)
 
 
