@@ -18,7 +18,7 @@ def search():
         response = s3_client.get_object(
             Bucket='helmrepo', Key=content)
         data = response['Body'].read()
-    return render_template('script.html', data=data)
+    return render_template('search.html', data=data)
 
 
 if __name__ == '__main__':
