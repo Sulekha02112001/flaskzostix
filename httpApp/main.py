@@ -17,8 +17,7 @@ def search():
         s3_client = boto3.client('s3')
         response = s3_client.get_object(
             Bucket='helmrepo', Key=content)
-        d = response['Body'].read()
-        data = jsonify(d)
+        data = response['Body'].read()
     return render_template('search.html', data=data)
 
 
