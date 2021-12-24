@@ -13,7 +13,7 @@ def home():
 @app.route('/')
 def search():
     if request.method == 'GET':
-        content = request.args['var']
+        content = request.args['search']
         s3_client = boto3.client('s3')
         response = s3_client.get_object(
             Bucket='helmrepo', Key=content)
