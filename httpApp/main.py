@@ -10,7 +10,7 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/')
+@app.route('/search')
 def search():
     if request.method == 'GET':
         content = request.args['search']
