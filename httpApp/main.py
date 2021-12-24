@@ -6,10 +6,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    s3_client = boto3.client('s3')
-    response = s3_client.get_object(
-        Bucket='helmrepo', Key='charts/index.yaml')
-    data = response['Body'].read()
+    s3 = boto3.resource('s3')
+    data = s3.Bucket('charts/')
+    # s3_client = boto3.client('s3')
+    # response = s3_client.get_object(
+    #   Bucket = 'helmrepo', Key = 'charts/index.yaml')
+    # data=response['Body'].read()
     return render_template('search.html', data=data)
 
 
