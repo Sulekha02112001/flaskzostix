@@ -7,7 +7,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    s3_client = boto3.client('s3')
+    s3_client = boto3.client('s3', aws_access_key_id='AKIATJZDC6CLFZY4R56Q',
+                             aws_secret_access_key='/ 5xxf+KQxngou8wXx/RJIOPCPipb+8mif+RBh5/R',)
     response = s3_client.get_object(
         Bucket='helmrepo', Key='charts/index.yaml')
     data = response['Body'].read()
