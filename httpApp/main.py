@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     s3_client = boto3.client('s3')
-    response = s3_client.list_object(
+    response = s3_client.list_objects(
         Bucket='helmrepo')
     data = response['Body'].read()
     return render_template('search.html', data=data)
