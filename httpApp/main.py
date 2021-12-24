@@ -1,5 +1,4 @@
 import boto3
-from flask import jsonify
 from flask import Flask, request
 from flask.templating import render_template
 app = Flask(__name__)
@@ -7,11 +6,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
-
-
-@app.route('/search')
-def search():
     s3_client = boto3.client('s3')
     response = s3_client.get_object(
         Bucket='helmrepo', Key='charts/index.yaml')
