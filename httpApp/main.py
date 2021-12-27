@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    s3 = boto3.client('s3',aws_access_key_id='AKIATJZDC6CLCYPTDHHK',aws_secret_access_key='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')
+    s3 = boto3.client('s3',aws_access_key_id='xxxxxxxxxxxxx',aws_secret_access_key='xxxxxxxxxxxxxxxxxxxx')
     response = s3.list_objects(Bucket="helmrepo")
     data = json.dumps(response, indent=4,sort_keys=True, default=str)
     return render_template('search.html', data=data)
