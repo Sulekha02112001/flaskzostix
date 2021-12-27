@@ -1,4 +1,5 @@
 import boto3
+import json
 from flask import Flask, request
 from flask.templating import render_template
 app = Flask(__name__)
@@ -6,11 +7,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    s3_client = boto3.client('s3', aws_access_key_id='AKIATJZDC6CLFZY4R56Q',
-                             aws_secret_access_key='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',)
-    response = s3_client.get_object(
-        Bucket='helmrepo', Key='charts/index.yaml')
-    data = response['Body'].read()
+    s3 = boto3.client('s3',aws_access_key_id='AKIATJZDC6CLCYPTDHHK',aws_secret_access_key='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')
+    response = s3.list_objects(Bucket="helmrepo")
+    data = json.dumps(response, indent=4,sort_keys=True, default=str)
     return render_template('search.html', data=data)
 
 
